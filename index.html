@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transportes Salazar IMO — Logística y Transporte de Carga</title>
+  <meta name="description" content="Transporte de carga especializado: sobredimensiones, carga refrigerada y carga seca. Cobertura nacional, monitoreo 24/7 y equipos de alta capacidad." />
+  <meta name="theme-color" content="#1a1838" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%231a1838'/%3E%3Cpath fill='%2359479a' d='M30.5 15h-9.3l.1-8.6-9.8 9.5A17.9 17.9 0 0 0 7 28.3l11.8-11.2v3.3l-7.6 7.3A18.7 18.7 0 0 0 9.5 41l16.2-15.5a5.7 5.7 0 0 1 7.7-.2l2.3-4.7a2 2 0 0 0-1.8-2.9H30.5Z'/%3E%3C/svg%3E" />
+  <style>
+  :root{
+    --indigo-950:#0f0d24;
+    --indigo-900:#1a1838;
+    --indigo-800:#24214b;
+    --purple-600:#59479a;
+    --purple-500:#6b58b3;
+    --purple-300:#9a8fe0;
+    --accent:#b8a9ff;
+    --bg:#0d0b20;
+    --surface:#141230;
+    --surface-2:#1b1940;
+    --text:#eef0ff;
+    --muted:#a7a6c5;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(9,8,30,.35), 0 1px 0 rgba(255,255,255,.02) inset;
+    --container: min(1120px, 92vw);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(105,88,179,.25), transparent 60%),
+      radial-gradient(1000px 700px at 110% 0%, rgba(36,33,75,.4), transparent 50%),
+      var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  img{max-width:100%; display:block}
+  h1,h2,h3,h4{line-height:1.15; margin:.2em 0 .3em}
+  h1{font-size:clamp(2rem, 4vw + .5rem, 3.25rem); font-weight:800}
+  h2{font-size:clamp(1.4rem, 2vw + .5rem, 2rem); font-weight:800}
+  h3{font-size:1.25rem; font-weight:700}
+  h4{font-size:1rem; font-weight:700; color:var(--purple-300)}
+  p{color:#d9daf2; margin:.6rem 0 0}
+  a{color:var(--purple-300); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{width:var(--container); margin-inline:auto;}
+
+  /* -------------------- A11Y -------------------- */
+  .skip-link{position:absolute; left:1rem; top:.5rem; transform:translateY(-200%); background:var(--surface); color:var(--text); padding:.6rem 1rem; border-radius:.5rem;}
+  .skip-link:focus{transform:translateY(0)}
+
+  /* HEADER -------------------- */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:linear-gradient(180deg, rgba(13,11,32,.85), rgba(13,11,32,.55));
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0;}
+  .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; color:#fff}
+  .brand img{filter:drop-shadow(0 4px 16px rgba(89,71,154,.35))}
+  .menu{display:flex; gap:1.2rem; align-items:center}
+  .menu a{color:#e9e8ff; font-weight:600; padding:.5rem .75rem; border-radius:.6rem;}
+  .menu a:hover{background:rgba(255,255,255,.06); text-decoration:none}
+  .nav-toggle{display:none; border:0; background:transparent; color:#fff}
+
+  /* HERO  */
+  .hero{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(1200px 600px at 80% 120%, rgba(89,71,154,.55), transparent 60%),
+      linear-gradient(180deg, var(--indigo-900), var(--indigo-800));
+  }
+  .hero__grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:3rem; padding: clamp(3rem, 6vw, 6rem) 0 4rem;}
+  .lead{font-size:clamp(1rem, 1.2vw + .6rem, 1.1rem); color:#cfcfee}
+  .hero__cta{display:flex; gap:.8rem; margin-top:1.1rem}
+  .grad{background:linear-gradient(90deg, var(--purple-300), #fff); -webkit-background-clip:text;background-clip:text;color:transparent}
+  .badges{display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin-top:1.1rem; padding:0; list-style:none}
+  .badges li{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); padding:.7rem .8rem; border-radius:.7rem; color:#eae9ff; font-size:.9rem;}
+  .hero__visual{position:relative; min-height:340px}
+  .orb{position:absolute; border-radius:50%; filter:blur(30px) saturate(160%); opacity:.55}
+  .orb--1{width:220px; height:220px; background:radial-gradient(circle at 30% 30%, var(--purple-500), transparent 60%); top:12%; left:6%}
+  .orb--2{width:160px; height:160px; background:radial-gradient(circle at 60% 60%, var(--accent), transparent 60%); right:10%; bottom:8%}
+  .orb--3{width:120px; height:120px; background:radial-gradient(circle at 60% 40%, var(--purple-600), transparent 60%); right:30%; top:5%}
+  .hero__card{
+    position:absolute; right:0; bottom:-20px; transform:translateY(10%);
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:1rem 1.1rem; width:min(360px, 92%); box-shadow:var(--shadow);
+  }
+  .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:.3rem}
+  .kpis__value{display:block; font-size:1.45rem; font-weight:800; color:#fff}
+  .kpis__label{display:block; font-size:.75rem; color:var(--muted)}
+  .hero__wave{height:30px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent)}
+
+  /*  SECTIONS */
+  .section{padding: clamp(3rem, 6vw, 5rem) 0}
+  .section--alt{background:linear-gradient(180deg, var(--surface), rgba(20,18,48,.35))}
+  .section__head{margin-bottom:1.5rem; text-align:left}
+  .section__head p{max-width:720px}
+
+  .cards{display:grid; gap:1rem; grid-template-columns: repeat(4, 1fr)}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:1.1rem 1rem 1rem; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;}
+  .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.18); box-shadow:var(--shadow)}
+  .card .icon{color:var(--purple-300); margin:.25rem 0 .2rem}
+  .list{margin:.6rem 0 0; padding-left:1rem}
+  .list li{margin:.25rem 0}
+
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem}
+  .feature{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:1rem}
+
+  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+ .tile{
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  display: grid;
+  place-items: end start;
+  padding: 1rem;
+}
+
+/* La imagen llena el tile */
+.tile > img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* recorta sin distorsionar */
+  display: block;
+  filter: saturate(105%) contrast(102%);
+}
+
+/* Overlay suave para dar legibilidad al texto */
+.tile::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 100% at 0% 100%, rgba(89,71,154,.45), transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
+}
+
+/* La leyenda se mantiene adelante */
+.tile figcaption{
+  position: relative;
+  z-index: 1;
+  background: rgba(13,11,32,.6);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: .4rem .6rem;
+  border-radius: .5rem;
+}
+
+  .form{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:1rem}
+  .form__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
+  .field{display:grid; gap:.35rem}
+  .field span{font-size:.9rem; color:var(--muted)}
+  .field input, .field select, .field textarea{
+    width:100%; padding:.75rem .8rem; border-radius:.6rem;
+    color:#fff; background:var(--surface-2); border:1px solid rgba(255,255,255,.08);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:2px solid var(--purple-500); outline-offset:1px}
+  .field--full{grid-column:1 / -1}
+  .form__legal{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem}
+  .checkbox{display:flex; align-items:center; gap:.5rem}
+
+  .site-footer{background:var(--indigo-950); border-top:1px solid rgba(255,255,255,.06)}
+  .footer__grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:1rem; padding:1.8rem 0}
+  .footer__grid h4{margin:.1rem 0 .4rem}
+  .footer__grid ul{margin:0; padding:0; list-style:none}
+  .social{display:grid; gap:.4rem}
+  .footer__legal{border-top:1px dashed rgba(255,255,255,.08); padding:1rem 0 1.6rem; text-align:center; color:var(--muted)}
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.75rem 1rem; border-radius:.8rem; font-weight:800; text-decoration:none; border:1px solid transparent; transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;}
+  .btn--primary{background:linear-gradient(90deg, var(--purple-600), var(--purple-500)); color:#fff; box-shadow:var(--shadow);}
+  .btn--primary:hover{transform:translateY(-2px)}
+  .btn--ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.2)}
+  .btn--ghost:hover{background:rgba(255,255,255,.06)}
+
+  .reveal{opacity:0; transform:translateY(14px); will-change:opacity, transform}
+  .reveal.is-visible{opacity:1; transform:none; transition: all .6s cubic-bezier(.2,.7,.2,1)}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  @media (max-width: 1024px){
+    .cards{grid-template-columns: repeat(2, 1fr)}
+    .feature-grid{grid-template-columns:repeat(2,1fr)}
+    .hero__grid{grid-template-columns:1fr; gap:1.25rem}
+    .hero__visual{min-height:280px}
+    .badges{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 720px){
+  .nav{ flex-wrap: wrap; }
+
+  /* En cel, el menú*/
+  .menu{
+    order: 3;
+    width: 100%;
+    display: block;                
+    overflow: hidden;               
+    max-height: 0;                 
+    opacity: 0;
+    transform: translateY(-8px);    
+    transition: max-height .35s ease, opacity .2s ease, transform .35s ease;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .menu.is-open{
+    opacity: 1;
+    transform: none;
+  }
+  .menu a{
+    display: block;
+    padding: .9rem .75rem;
+    border-radius: .6rem;
+  }
+  .menu a + a{
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+
+  .nav-toggle{ display: inline-grid; place-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .menu{ transition: none; }
+}
+@media (max-width: 720px){
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  .tile {
+    aspect-ratio: 16 / 9; 
+    height: 260px;     
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" data-scrolled="false" role="banner">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Inicio">
+        <img src="https://www.salazarimo.com/logo.png" alt="Logo Transportes Salazar IMO" width="44" height="44" onerror="this.style.display='none'"/>
+        <span>Salazar IMO</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">
+        <span class="sr-only">Abrir menú</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#equipos">Equipos</a>
+        <a href="#sucursales">Sucursales</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1>Alta capacidad y <span class="grad">puntualidad</span> en transporte de carga</h1>
+          <p class="lead">Especialistas en <strong>sobredimensiones</strong>, <strong>temperatura controlada</strong> y <strong>carga seca</strong>,
+            con cobertura nacional y <strong>monitoreo 24/7</strong> para total visibilidad.</p>
+
+          <div class="hero__cta">
+            <a href="#contacto" class="btn btn--primary">Solicitar cotización</a>
+            <a href="#servicios" class="btn btn--ghost">Ver servicios</a>
+          </div>
+
+          <ul class="badges" role="list">
+            <li>Operación en puertos: Altamira · Manzanillo · Lázaro Cárdenas</li>
+            <li>GPS y telemetría en tiempo real</li>
+            <li>Equipo y operadores certificados</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="orb orb--1"></div>
+          <div class="orb orb--2"></div>
+          <div class="orb orb--3"></div>
+          <div class="hero__card">
+            <h3>Estado de flota</h3>
+            <div class="kpis">
+              <div><span class="kpis__value">98%</span><span class="kpis__label">Entregas a tiempo</span></div>
+              <div><span class="kpis__value">24/7</span><span class="kpis__label">Monitoreo</span></div>
+              <div><span class="kpis__value">+3</span><span class="kpis__label">Puertos clave</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__wave" aria-hidden="true"></div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Soluciones de Transporte</h2>
+          <p>Diseñadas para los retos logísticos más exigentes, con foco en seguridad, tiempos y control.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M3 18h14l4-6-4-6H3v12Z" fill="currentColor" opacity=".14"/><path d="M4 8h11l3 4-3 4H4V8Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </div>
+            <h3>Sobredimensiones</h3>
+            <p>Traslado seguro de maquinaria y mercancía con sobrepeso o exceso de dimensiones mediante <em>lowboys</em> y <em>camas bajas</em>, escoltas y planeación de ruta especializada.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M6 4h12v16H6z" fill="currentColor" opacity=".14"/><path d="M8 8h8M8 12h8M8 16h8" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="2" fill="currentColor"/></svg>
+            </div>
+            <h3>Refrigerado</h3>
+            <p>Transporte a temperatura controlada para productos perecederos, con registro térmico, geolocalización y estimación de llegada en tiempo real.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M3 9h18v8H3z" fill="currentColor" opacity=".14"/><path d="M4 10h16v6H4zM7 7h10" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3>Carga seca y contenedor</h3>
+            <p>Operación puerta a puerta para contenedores y carga suelta, coordinando patio, muelle y última milla para maximizar la eficiencia.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M3 5h18v4H3zM6 13h12v6H6z" fill="currentColor" opacity=".14"/><path d="M4 7h16M7 16h10" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+            </div>
+            <h3>Servicios integrales</h3>
+            <ul class="list">
+              <li>Almacenaje en patio</li>
+              <li>Renta y operación de generadores</li>
+              <li>Traslado muelle–patio</li>
+              <li>Carro piloto y seguimiento</li>
+              <li>Reportes en tránsito para el cliente</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="feature-grid reveal">
+          <div class="feature">
+            <h4>Ventajas operativas</h4>
+            <p>Control personalizado de unidades, visibilidad de velocidad y dirección, límites y cercos virtuales, estado de batería y alertas proactivas.</p>
+          </div>
+          <div class="feature">
+            <h4>Seguridad y cumplimiento</h4>
+            <p>Protocolos de inspección, escoltas cuando se requieren y documentación al día para cruces y maniobras especiales.</p>
+          </div>
+          <div class="feature">
+            <h4>Cobertura nacional</h4>
+            <p>Red coordinada en puertos, corredores y polos industriales con atención de punta a punta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPMENT -->
+    <section id="equipos" class="section section--alt">
+  <div class="container">
+    <header class="section__head">
+      <h2>Equipos y capacidades</h2>
+      <p>Plataformas, lowboys, camas bajas, chasis portacontenedor (20’ y 40’), generadores para refrigerado y más.</p>
+    </header>
+
+    <div class="gallery">
+      <figure class="tile reveal">
+        <img src="images/102lado.jpeg" 
+             alt="Lowboy transportando maquinaria sobredimensionada"
+             loading="lazy" decoding="async">
+        <figcaption>Lowboy</figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img src="images/blanco.jpeg"
+             alt="Plataforma extra larga para carga de gran longitud"
+             loading="lazy" decoding="async">
+        <figcaption>Plataforma Extra Larga</figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img src="images/gris.jpeg"
+             alt="Cama baja para equipo pesado"
+             loading="lazy" decoding="async">
+        <figcaption>Cama Baja</figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img src="images/blanco2.jpeg"
+             alt="Chasis portacontenedor 20 y 40 pies"
+             loading="lazy" decoding="async">
+        <figcaption>Chasis Portacontenedor</figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img src="images/generador.jpeg"
+             alt="Generadores para contenedores refrigerados"
+             loading="lazy" decoding="async">
+        <figcaption>Generadores para refrigerado</figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img src="images/carropilotolado.jpeg"
+             alt="Carro piloto escoltando sobredimensión"
+             loading="lazy" decoding="async">
+        <figcaption>Carros Piloto</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+    <!-- SUCURSALES -->
+    <section id="sucursales" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Sucursales</h2>
+          <p>Operación estratégica en puertos clave para dar velocidad y certidumbre a tu cadena de suministro.</p>
+        </header>
+
+        <div class="branches">
+          <article class="branch reveal">
+            <h3>Altamira, Tamaulipas</h3>
+            <p>Puerto Industrial de Altamira · Cobertura noreste</p>
+            <a class="chip" href="#contacto">Contactar</a>
+          </article>
+          <article class="branch reveal">
+            <h3>Manzanillo, Colima</h3>
+            <p>Conexión Pacífico · Cobertura occidente</p>
+            <a class="chip" href="#contacto">Contactar</a>
+          </article>
+          <article class="branch reveal">
+            <h3>Lázaro Cárdenas, Michoacán</h3>
+            <p>Corredores al bajío y centro</p>
+            <a class="chip" href="#contacto">Contactar</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta__inner">
+        <h2>¿Listos para mover tu proyecto?</h2>
+        <p>Conecta con nuestro equipo y recibe una propuesta a la medida.</p>
+        <a href="#contacto" class="btn btn--primary">Cotizar ahora</a>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Contacto</h2>
+          <p>Cuéntanos tu necesidad y un ejecutivo te responderá a la brevedad.</p>
+        </header>
+
+<form action="https://formspree.io/f/xqaggvwz" method="POST">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-5000px;">
+  <input type="hidden" name="_subject" value="Nueva solicitud de cotización — Sitio Salazar IMO">
+  <input type="hidden" name="_replyto" value="">
+
+  <div class="form__grid">
+    <label class="field">
+      <span>Nombre</span>
+      <input type="text" name="nombre" required placeholder="Tu nombre"/>
+    </label>
+    <label class="field">
+      <span>Empresa</span>
+      <input type="text" name="empresa" placeholder="Tu empresa"/>
+    </label>
+    <label class="field">
+      <span>Correo</span>
+      <input type="email" name="correo" required placeholder="tu@correo.com"/>
+    </label>
+    <label class="field">
+      <span>Teléfono</span>
+      <input type="tel" name="telefono" placeholder="+52"/>
+    </label>
+    <label class="field field--full">
+      <span>Servicio de interés</span>
+      <select name="servicio" required>
+        <option value="">Selecciona…</option>
+        <option>Sobredimensiones</option>
+        <option>Refrigerado</option>
+        <option>Carga seca</option>
+        <option>Servicios integrales</option>
+        <option>Otro</option>
+      </select>
+    </label>
+    <label class="field field--full">
+      <span>Detalles</span>
+      <textarea name="mensaje" rows="5" placeholder="Origen, destino, fechas, características de la carga…"></textarea>
+    </label>
+  </div>
+
+  <div class="form__legal">
+    <label class="checkbox">
+      <input type="checkbox" name="privacidad" required/>
+      <span>Acepto el aviso de privacidad</span>
+    </label>
+    <button class="btn btn--primary" type="submit">Enviar</button>
+  </div>
+</form>
+
+
+          </div>
+        </section>
+      </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="https://www.salazarimo.com/logo.png" alt="" width="36" height="36" onerror="this.style.display='none'"/>
+        <strong>Transportes Salazar IMO</strong>
+        <p>Excelencia operativa, innovación y seguridad en cada envío.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:logistica@salazarimo.com.mx">logistica@salazarimo.com.mx</a></li>
+          <li>+52 (833) 130 4365</li>
+          <li>+52 (833) 440 7890</li>
+          <li>Matriz: Altamira / Tamaulipas</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#equipos">Equipos</a></li>
+          <li><a href="#sucursales">Sucursales</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <ul class="social">
+          <li><a href="https://www.instagram.com/salazar_imo?igsh=MWdhNXVpeWw0Mm5mNQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__legal">
+      <small>© <span id="year"></span> Transportes Salazar IMO. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    const toggle = document.querySelector('.nav-toggle');
+    const menu   = document.getElementById('menu');
+    const mq     = window.matchMedia('(max-width: 720px)');
+
+    if (!toggle || !menu) return;
+
+    const openMenu = () => {
+      toggle.setAttribute('aria-expanded', 'true');
+      menu.classList.add('is-open');
+      // anima desde altura 0 a su altura real
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+    };
+
+    const closeMenu = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open');
+      menu.style.maxHeight = '0px';
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      open ? closeMenu() : openMenu();
+    });
+
+    // Cierra cuando se elige un enlace (patrón común en móvil)
+    menu.addEventListener('click', (e) => {
+      if (e.target.closest('a') && mq.matches) closeMenu();
+    });
+
+    // Mantén el estado coherente al cambiar de viewport
+    mq.addEventListener('change', (e) => {
+      if (!e.matches) {                     // Pasaste a desktop
+        menu.style.maxHeight = '';
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        closeMenu();                        // En móvil empieza cerrado
+      }
+    });
+
+    // Si cambia el alto del contenido mientras está abierto (wrap, fuentes, etc.)
+    window.addEventListener('resize', () => {
+      if (mq.matches && toggle.getAttribute('aria-expanded') === 'true') {
+        menu.style.maxHeight = menu.scrollHeight + 'px';
+      }
+    });
+
+    // Inicial: cerrado en móvil, abierto “natural” en desktop
+    if (mq.matches) closeMenu();
+  })();
+  const header = document.querySelector('.site-header');
+  const onScroll = () => { header.dataset.scrolled = String(window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll); onScroll();
+  const observer = new IntersectionObserver((entries) => { entries.forEach((e) => e.isIntersecting && e.target.classList.add('is-visible')); }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+
+      fd.set('_replyto', fd.get('correo') || '');
+
+      const email = (fd.get('correo') || '').toString().trim();
+      const nombre = (fd.get('nombre') || '').toString().trim();
+      const servicio = (fd.get('servicio') || '').toString().trim();
+      const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!nombre || !okEmail || !servicio) {
+        alert('Por favor completa nombre, correo válido y servicio.');
+        return;
+      }
+
+      try {
+        const resp = await fetch(form.action, {
+          method: form.method,
+          headers: { 'Accept': 'application/json' },
+          body: fd
+        });
+        if (resp.ok) {
+          alert('¡Gracias! Recibimos tu solicitud. Te contactaremos pronto.');
+          form.reset();
+        } else {
+          const err = await resp.json().catch(() => ({}));
+          alert(err.message || 'Hubo un problema al enviar. Intenta de nuevo.');
+        }
+      } catch {
+        alert('No se pudo enviar. Revisa tu conexión e intenta de nuevo.');
+      }
+    });
+  }
+
+
+</script>
+</body>
+</html>
