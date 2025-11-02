@@ -128,18 +128,16 @@
   padding: 1rem;
 }
 
-/* La imagen llena el tile */
 .tile > img{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* recorta sin distorsionar */
+  object-fit: cover; 
   display: block;
   filter: saturate(105%) contrast(102%);
 }
 
-/* Overlay suave para dar legibilidad al texto */
 .tile::after{
   content: "";
   position: absolute;
@@ -150,7 +148,6 @@
     linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
 }
 
-/* La leyenda se mantiene adelante */
 .tile figcaption{
   position: relative;
   z-index: 1;
@@ -233,22 +230,58 @@
   .nav-toggle{ display: inline-grid; place-items: center; }
 }
 
-/* Phones: big, readable tiles */
 @media (max-width: 720px){
   .gallery{
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas = imágenes más grandes */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 0.9rem;
   }
   .tile{
-    aspect-ratio: 4 / 3;   /* un poco más alto que 16:9 */
-    /* NO fijamos height: deja que el ratio controle el alto */
+    aspect-ratio: 4 / 3;  
   }
 }
 
-/* Teléfonos muy angostos (iPhone SE / 360–400px): 1 por fila */
 @media (max-width: 420px){
   .gallery{ grid-template-columns: 1fr; }
-  .tile{ aspect-ratio: 16 / 9; } /* más apaisado para que no quede demasiado alto */
+  .tile{ aspect-ratio: 16 / 9; }
+}
+html, body { overflow-x: hidden; }
+
+.container {
+  padding-inline: clamp(12px, 3vw, 20px);
+  padding-left: max(env(safe-area-inset-left), clamp(12px, 3vw, 20px));
+  padding-right: max(env(safe-area-inset-right), clamp(12px, 3vw, 20px));
+}
+
+@media (max-width: 720px){
+  .footer__grid{
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px){
+  .footer__grid{
+    grid-template-columns: minmax(0,1fr); 
+  }
+}
+
+@media (max-width: 720px){
+  .form__grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px){
+  .gallery{ grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+  .tile{ aspect-ratio: 4 / 3; }
+}
+@media (max-width: 420px){
+  .gallery{ grid-template-columns: 1fr; }
+  .tile{ aspect-ratio: 16 / 9; }
+}
+
+.reveal.is-visible{
+  opacity: 1;
+  transform: none;
+  transition: opacity .6s cubic-bezier(.2,.7,.2,1),
+              transform .6s cubic-bezier(.2,.7,.2,1);
 }
 
 
@@ -671,3 +704,4 @@
 </script>
 </body>
 </html>
+
